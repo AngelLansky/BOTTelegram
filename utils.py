@@ -183,15 +183,14 @@ def delivery_calc_summer(bot):
 
     @bot.callback_query_handler(func=lambda callback: callback.data == 'summer')
 
-    def calc_summer(call):
+    def calc_all_goods(call):
 
         bot.answer_callback_query(callback_query_id=call.id)
-        markup = types.InlineKeyboardMarkup()
-        markup.add(types.InlineKeyboardButton('🚚Автомобильная доставка', callback_data='auto'))
-        markup.add(types.InlineKeyboardButton('✈️Авиа доставка', callback_data='avia'))
 
         if call.data == 'summer':
-
+            markup = types.InlineKeyboardMarkup()
+            markup.add(types.InlineKeyboardButton('🚚Автомобильная доставка лето', callback_data='auto_summer'))
+            markup.add(types.InlineKeyboardButton('✈️Авиа доставка лето', callback_data='avia_summer'))
             bot.edit_message_reply_markup(call.message.chat.id, message_id=call.message.message_id, reply_markup='')
             bot.send_message(call.message.chat.id,
                              '\n'
@@ -200,8 +199,19 @@ def delivery_calc_summer(bot):
                              , reply_markup=markup
                              )
 
-        elif call.data == 'winter':
 
+def delivery_calc_winter(bot):
+
+    @bot.callback_query_handler(func=lambda callback: callback.data == 'winter')
+
+    def calc_all_goods(call):
+
+        bot.answer_callback_query(callback_query_id=call.id)
+
+        if call.data == 'winter':
+            markup = types.InlineKeyboardMarkup()
+            markup.add(types.InlineKeyboardButton('🚚Автомобильная доставка зима', callback_data='auto_winter'))
+            markup.add(types.InlineKeyboardButton('✈️Авиа доставка зима', callback_data='avia_winter'))
             bot.edit_message_reply_markup(call.message.chat.id, message_id=call.message.message_id, reply_markup='')
             bot.send_message(call.message.chat.id,
                              '\n'
@@ -210,8 +220,19 @@ def delivery_calc_summer(bot):
                              , reply_markup=markup
                              )
 
-        elif call.data == 'short':
 
+def delivery_calc_short(bot):
+
+    @bot.callback_query_handler(func=lambda callback: callback.data == 'short')
+
+    def calc_all_goods(call):
+
+        bot.answer_callback_query(callback_query_id=call.id)
+
+        if call.data == 'short':
+            markup = types.InlineKeyboardMarkup()
+            markup.add(types.InlineKeyboardButton('🚚Автомобильная доставка', callback_data='auto_short'))
+            markup.add(types.InlineKeyboardButton('✈️Авиа доставка', callback_data='avia_short'))
             bot.edit_message_reply_markup(call.message.chat.id, message_id=call.message.message_id, reply_markup='')
             bot.send_message(call.message.chat.id,
                              '\n'
@@ -220,8 +241,18 @@ def delivery_calc_summer(bot):
                              , reply_markup=markup
                              )
 
-        elif call.data == 'parph':
 
+def delivery_calc_parph(bot):
+
+    @bot.callback_query_handler(func=lambda callback: callback.data == 'parph')
+    def calc_all_goods(call):
+
+        bot.answer_callback_query(callback_query_id=call.id)
+
+        if call.data == 'parph':
+            markup = types.InlineKeyboardMarkup()
+            markup.add(types.InlineKeyboardButton('🚚Автомобильная доставка', callback_data='auto_parph'))
+            markup.add(types.InlineKeyboardButton('✈️Авиа доставка', callback_data='avia_parph'))
             bot.edit_message_reply_markup(call.message.chat.id, message_id=call.message.message_id, reply_markup='')
             bot.send_message(call.message.chat.id,
                              '\n'
@@ -232,23 +263,79 @@ def delivery_calc_summer(bot):
 
 
 #Функция подсчета стоимости
-def calculator_goods_auto(bot):
+def calculator_goods_auto_avia(bot):
 
-    @bot.callback_query_handler(func=lambda callback: callback.data == 'auto')
+    @bot.callback_query_handler(func=lambda callback: callback.data)
 
     def calc_before_delivery(call):
 
         photo = open('Снимок экрана 2024-03-25 в 15.48.00.png', 'rb')
-        if call.data == 'auto':
 
+        if call.data == 'auto_summer':
             bot.edit_message_reply_markup(call.message.chat.id, message_id=call.message.message_id, reply_markup='')
             mess = bot.send_photo(call.message.chat.id, photo,
                                   'Напишите стоимость товара в юанях (зачеркнутая цена)\n'
                                   '⚠⚠ Если зачеркнутой цены нет, то напишите обычную.'
                                   )
-            bot.register_next_step_handler(mess, calculator)
+            bot.register_next_step_handler(mess, calculator_summer_auto)
 
-    def calculator(message):
+        elif call.data == 'auto_winter':
+            bot.edit_message_reply_markup(call.message.chat.id, message_id=call.message.message_id, reply_markup='')
+            mess = bot.send_photo(call.message.chat.id, photo,
+                                  'Напишите стоимость товара в юанях (зачеркнутая цена)\n'
+                                  '⚠⚠ Если зачеркнутой цены нет, то напишите обычную.'
+                                  )
+            bot.register_next_step_handler(mess, calculator_winter_auto)
+
+        elif call.data == 'auto_short':
+            bot.edit_message_reply_markup(call.message.chat.id, message_id=call.message.message_id, reply_markup='')
+            mess = bot.send_photo(call.message.chat.id, photo,
+                                  'Напишите стоимость товара в юанях (зачеркнутая цена)\n'
+                                  '⚠⚠ Если зачеркнутой цены нет, то напишите обычную.'
+                                  )
+            bot.register_next_step_handler(mess, calculator_short_auto)
+
+        elif call.data == 'auto_parph':
+            bot.edit_message_reply_markup(call.message.chat.id, message_id=call.message.message_id, reply_markup='')
+            mess = bot.send_photo(call.message.chat.id, photo,
+                                  'Напишите стоимость товара в юанях (зачеркнутая цена)\n'
+                                  '⚠⚠ Если зачеркнутой цены нет, то напишите обычную.'
+                                  )
+            bot.register_next_step_handler(mess, calculator_parph_auto)
+
+        elif call.data == 'avia_summer':
+            bot.edit_message_reply_markup(call.message.chat.id, message_id=call.message.message_id, reply_markup='')
+            mess = bot.send_photo(call.message.chat.id, photo,
+                                  'Напишите стоимость товара в юанях (зачеркнутая цена)\n'
+                                  '⚠⚠ Если зачеркнутой цены нет, то напишите обычную.'
+                                  )
+            bot.register_next_step_handler(mess, calculator_summer_avia)
+
+        elif call.data == 'avia_winter':
+            bot.edit_message_reply_markup(call.message.chat.id, message_id=call.message.message_id, reply_markup='')
+            mess = bot.send_photo(call.message.chat.id, photo,
+                                  'Напишите стоимость товара в юанях (зачеркнутая цена)\n'
+                                  '⚠⚠ Если зачеркнутой цены нет, то напишите обычную.'
+                                  )
+            bot.register_next_step_handler(mess, calculator_winter_avia)
+
+        elif call.data == 'avia_short':
+            bot.edit_message_reply_markup(call.message.chat.id, message_id=call.message.message_id, reply_markup='')
+            mess = bot.send_photo(call.message.chat.id, photo,
+                                  'Напишите стоимость товара в юанях (зачеркнутая цена)\n'
+                                  '⚠⚠ Если зачеркнутой цены нет, то напишите обычную.'
+                                  )
+            bot.register_next_step_handler(mess, calculator_short_avia)
+
+        elif call.data == 'avia_parph':
+            bot.edit_message_reply_markup(call.message.chat.id, message_id=call.message.message_id, reply_markup='')
+            mess = bot.send_photo(call.message.chat.id, photo,
+                                  'Напишите стоимость товара в юанях (зачеркнутая цена)\n'
+                                  '⚠⚠ Если зачеркнутой цены нет, то напишите обычную.'
+                                  )
+            bot.register_next_step_handler(mess, calculator_parph_avia)
+
+    def calculator_summer_auto(message):
 
         photo = open('Снимок экрана 2024-03-25 в 15.48.00.png', 'rb')
         variable = message.text
@@ -264,6 +351,8 @@ def calculator_goods_auto(bot):
                 bot.send_message(message.chat.id,
                                  f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
                                  '\n'
+                                 'Тип доставки: Авто доставка'
+                                 '\n'
                                  '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
                                  reply_markup=markup
                                  )
@@ -275,6 +364,8 @@ def calculator_goods_auto(bot):
                 price = float(variable) * 19
                 bot.send_message(message.chat.id,
                                  f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авто доставка'
                                  '\n'
                                  '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
                                  reply_markup=markup
@@ -288,6 +379,8 @@ def calculator_goods_auto(bot):
                 bot.send_message(message.chat.id,
                                  f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
                                  '\n'
+                                 'Тип доставки: Авто доставка'
+                                 '\n'
                                  '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
                                  reply_markup=markup
                                  )
@@ -299,6 +392,8 @@ def calculator_goods_auto(bot):
                 price = float(variable) * 16.5
                 bot.send_message(message.chat.id,
                                  f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авто доставка'
                                  '\n'
                                  '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
                                  reply_markup=markup
@@ -321,17 +416,585 @@ def calculator_goods_auto(bot):
                                   'Напишите стоимость товара в юанях (зачеркнутая цена)\n'
                                   '⚠⚠ Если зачеркнутой цены нет, то напишите обычную.'
                                   )
-            bot.register_next_step_handler(mesg, calculator)
+            bot.register_next_step_handler(mesg, calculator_summer_auto)
 
+    def calculator_summer_avia(message):
 
-def calculator_goods_avia(bot):
+        photo = open('Снимок экрана 2024-03-25 в 15.48.00.png', 'rb')
+        variable = message.text
 
-    @bot.callback_query_handler(func=lambda callback: callback.data == 'avia')
-    def avia_calc(call):
-        pass
+        try:
+            variable = int(variable)
 
+            if 1 <= variable <= 300:
+                markup: InlineKeyboardMarkup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 23.4
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авиа доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
 
+            elif 301 <= variable <= 600:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 21
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авиа доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
 
+            elif 601 <= variable <= 900:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 19.5
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авиа доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
 
+            elif 901 <= variable <= 3000:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 18.5
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авиа доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
 
+            else:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('👨‍💻Задать вопрос', url='t.me/TovarovedPro'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                bot.send_message(message.chat.id,
+                                 '🤖Через бота можно заказать товары стоимостью до 3000¥.\n'
+                                 'Для заказа на сумму свыше 3000¥, вы можете связаться с оператором👨‍💻, оплата проходит через оператора\n',
+                                 reply_markup=markup
+                                 )
 
+        except:
+            bot.send_message(message.chat.id, 'Неверный ввод, введите число')
+            mesg = bot.send_photo(message.chat.id, photo,
+                                  'Напишите стоимость товара в юанях (зачеркнутая цена)\n'
+                                  '⚠⚠ Если зачеркнутой цены нет, то напишите обычную.'
+                                  )
+            bot.register_next_step_handler(mesg, calculator_summer_avia)
+
+    def calculator_winter_auto(message):
+
+        photo = open('Снимок экрана 2024-03-25 в 15.48.00.png', 'rb')
+        variable = message.text
+
+        try:
+            variable = int(variable)
+
+            if 1 <= variable <= 300:
+                markup: InlineKeyboardMarkup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 21.8
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авто доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            elif 301 <= variable <= 600:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 19.4
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авто доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            elif 601 <= variable <= 900:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 17.9
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авто доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            elif 901 <= variable <= 3000:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 16.9
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авто доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            else:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('👨‍💻Задать вопрос', url='t.me/TovarovedPro'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                bot.send_message(message.chat.id,
+                                 '🤖Через бота можно заказать товары стоимостью до 3000¥.\n'
+                                 'Для заказа на сумму свыше 3000¥, вы можете связаться с оператором👨‍💻, оплата проходит через оператора\n',
+                                 reply_markup=markup
+                                 )
+
+        except:
+            bot.send_message(message.chat.id, 'Неверный ввод, введите число')
+            mesg = bot.send_photo(message.chat.id, photo,
+                                  'Напишите стоимость товара в юанях (зачеркнутая цена)\n'
+                                  '⚠⚠ Если зачеркнутой цены нет, то напишите обычную.'
+                                  )
+            bot.register_next_step_handler(mesg, calculator_winter_auto)
+
+    def calculator_winter_avia(message):
+
+        photo = open('Снимок экрана 2024-03-25 в 15.48.00.png', 'rb')
+        variable = message.text
+
+        try:
+            variable = int(variable)
+
+            if 1 <= variable <= 300:
+                markup: InlineKeyboardMarkup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 23.8
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авиа доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            elif 301 <= variable <= 600:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 21.4
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авиа доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            elif 601 <= variable <= 900:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 19.9
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авиа доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            elif 901 <= variable <= 3000:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 18.9
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авиа доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            else:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('👨‍💻Задать вопрос', url='t.me/TovarovedPro'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                bot.send_message(message.chat.id,
+                                 '🤖Через бота можно заказать товары стоимостью до 3000¥.\n'
+                                 'Для заказа на сумму свыше 3000¥, вы можете связаться с оператором👨‍💻, оплата проходит через оператора\n',
+                                 reply_markup=markup
+                                 )
+
+        except:
+            bot.send_message(message.chat.id, 'Неверный ввод, введите число')
+            mesg = bot.send_photo(message.chat.id, photo,
+                                  'Напишите стоимость товара в юанях (зачеркнутая цена)\n'
+                                  '⚠⚠ Если зачеркнутой цены нет, то напишите обычную.'
+                                  )
+            bot.register_next_step_handler(mesg, calculator_winter_avia)
+
+    def calculator_short_auto(message):
+
+        photo = open('Снимок экрана 2024-03-25 в 15.48.00.png', 'rb')
+        variable = message.text
+
+        try:
+            variable = int(variable)
+
+            if 1 <= variable <= 300:
+                markup: InlineKeyboardMarkup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 21
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авто доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            elif 301 <= variable <= 600:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 18.6
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авто доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            elif 601 <= variable <= 900:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 17.3
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авто доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            elif 901 <= variable <= 3000:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 16.3
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авто доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            else:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('👨‍💻Задать вопрос', url='t.me/TovarovedPro'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                bot.send_message(message.chat.id,
+                                 '🤖Через бота можно заказать товары стоимостью до 3000¥.\n'
+                                 'Для заказа на сумму свыше 3000¥, вы можете связаться с оператором👨‍💻, оплата проходит через оператора\n',
+                                 reply_markup=markup
+                                 )
+
+        except:
+            bot.send_message(message.chat.id, 'Неверный ввод, введите число')
+            mesg = bot.send_photo(message.chat.id, photo,
+                                  'Напишите стоимость товара в юанях (зачеркнутая цена)\n'
+                                  '⚠⚠ Если зачеркнутой цены нет, то напишите обычную.'
+                                  )
+            bot.register_next_step_handler(mesg, calculator_short_auto)
+
+    def calculator_short_avia(message):
+
+        photo = open('Снимок экрана 2024-03-25 в 15.48.00.png', 'rb')
+        variable = message.text
+
+        try:
+            variable = int(variable)
+
+            if 1 <= variable <= 300:
+                markup: InlineKeyboardMarkup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 23.2
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авиа доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            elif 301 <= variable <= 600:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 21
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авиа доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            elif 601 <= variable <= 900:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 19.3
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авиа доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            elif 901 <= variable <= 3000:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 18.3
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авиа доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            else:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('👨‍💻Задать вопрос', url='t.me/TovarovedPro'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                bot.send_message(message.chat.id,
+                                 '🤖Через бота можно заказать товары стоимостью до 3000¥.\n'
+                                 'Для заказа на сумму свыше 3000¥, вы можете связаться с оператором👨‍💻, оплата проходит через оператора\n',
+                                 reply_markup=markup
+                                 )
+
+        except:
+            bot.send_message(message.chat.id, 'Неверный ввод, введите число')
+            mesg = bot.send_photo(message.chat.id, photo,
+                                  'Напишите стоимость товара в юанях (зачеркнутая цена)\n'
+                                  '⚠⚠ Если зачеркнутой цены нет, то напишите обычную.'
+                                  )
+            bot.register_next_step_handler(mesg, calculator_short_avia)
+
+    def calculator_parph_auto(message):
+
+        photo = open('Снимок экрана 2024-03-25 в 15.48.00.png', 'rb')
+        variable = message.text
+
+        try:
+            variable = int(variable)
+
+            if 1 <= variable <= 300:
+                markup: InlineKeyboardMarkup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 21.1
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авто доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            elif 301 <= variable <= 600:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 18.5
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авто доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            elif 601 <= variable <= 900:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 17.1
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авто доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            elif 901 <= variable <= 3000:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 16.1
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авто доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            else:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('👨‍💻Задать вопрос', url='t.me/TovarovedPro'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                bot.send_message(message.chat.id,
+                                 '🤖Через бота можно заказать товары стоимостью до 3000¥.\n'
+                                 'Для заказа на сумму свыше 3000¥, вы можете связаться с оператором👨‍💻, оплата проходит через оператора\n',
+                                 reply_markup=markup
+                                 )
+
+        except:
+            bot.send_message(message.chat.id, 'Неверный ввод, введите число')
+            mesg = bot.send_photo(message.chat.id, photo,
+                                  'Напишите стоимость товара в юанях (зачеркнутая цена)\n'
+                                  '⚠⚠ Если зачеркнутой цены нет, то напишите обычную.'
+                                  )
+            bot.register_next_step_handler(mesg, calculator_parph_auto)
+
+    def calculator_parph_avia(message):
+
+        photo = open('Снимок экрана 2024-03-25 в 15.48.00.png', 'rb')
+        variable = message.text
+
+        try:
+            variable = int(variable)
+
+            if 1 <= variable <= 300:
+                markup: InlineKeyboardMarkup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 22.9
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авиа доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            elif 301 <= variable <= 600:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 20.6
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авиа доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            elif 601 <= variable <= 900:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 19
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авиа доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            elif 901 <= variable <= 3000:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                price = float(variable) * 18
+                bot.send_message(message.chat.id,
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 '\n'
+                                 'Тип доставки: Авиа доставка'
+                                 '\n'
+                                 '🚚 Доставка СДЭКом по России до Вашего пункта выдачи оплачивается ОТДЕЛЬНО.',
+                                 reply_markup=markup
+                                 )
+
+            else:
+                markup = types.InlineKeyboardMarkup()
+                markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
+                markup.add(types.InlineKeyboardButton('👨‍💻Задать вопрос', url='t.me/TovarovedPro'))
+                markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+                bot.send_message(message.chat.id,
+                                 '🤖Через бота можно заказать товары стоимостью до 3000¥.\n'
+                                 'Для заказа на сумму свыше 3000¥, вы можете связаться с оператором👨‍💻, оплата проходит через оператора\n',
+                                 reply_markup=markup
+                                 )
+
+        except:
+            bot.send_message(message.chat.id, 'Неверный ввод, введите число')
+            mesg = bot.send_photo(message.chat.id, photo,
+                                  'Напишите стоимость товара в юанях (зачеркнутая цена)\n'
+                                  '⚠⚠ Если зачеркнутой цены нет, то напишите обычную.'
+                                  )
+            bot.register_next_step_handler(mesg, calculator_parph_avia)

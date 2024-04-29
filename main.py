@@ -4,7 +4,7 @@ import utils
 from config import API_KEY
 
 
-bot: TeleBot = telebot.TeleBot(API_KEY)
+bot = telebot.TeleBot(API_KEY)
 
 
 #Обработка команды старт
@@ -121,13 +121,16 @@ utils.question_kom(bot)
 utils.question_to_operator(bot)
 
 
-#Калькулятор стоимости доставки
-utils.calculator_goods_auto(bot)
-
-
 #Калькулятор
 utils.delivery_calc_summer(bot)
 
+utils.delivery_calc_winter(bot)
+
+utils.delivery_calc_short(bot)
+
+utils.delivery_calc_parph(bot)
+
+utils.calculator_goods_auto_avia(bot)
 
 
 
