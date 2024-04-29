@@ -389,9 +389,9 @@ def calculator_goods_auto_avia(bot):
                 markup = types.InlineKeyboardMarkup()
                 markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
                 markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
-                price = float(variable) * 16.5
+                price = float(variable) * 16.5 + float(variable) * 1.65
                 bot.send_message(message.chat.id,
-                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России и страхованием товара\n'
                                  '\n'
                                  'Тип доставки: Авто доставка'
                                  '\n'
@@ -472,9 +472,9 @@ def calculator_goods_auto_avia(bot):
                 markup = types.InlineKeyboardMarkup()
                 markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
                 markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
-                price = float(variable) * 18.5
+                price = float(variable) * 18.5 + float(variable) * 1.85
                 bot.send_message(message.chat.id,
-                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России и страхованием товара\n'
                                  '\n'
                                  'Тип доставки: Авиа доставка'
                                  '\n'
@@ -555,9 +555,9 @@ def calculator_goods_auto_avia(bot):
                 markup = types.InlineKeyboardMarkup()
                 markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
                 markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
-                price = float(variable) * 16.9
+                price = float(variable) * 16.9 + float(variable) * 1.69
                 bot.send_message(message.chat.id,
-                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России и страхованием товара\n'
                                  '\n'
                                  'Тип доставки: Авто доставка'
                                  '\n'
@@ -638,9 +638,9 @@ def calculator_goods_auto_avia(bot):
                 markup = types.InlineKeyboardMarkup()
                 markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
                 markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
-                price = float(variable) * 18.9
+                price = float(variable) * 18.9 + float(variable) * 1.89
                 bot.send_message(message.chat.id,
-                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России и страхованием товара\n'
                                  '\n'
                                  'Тип доставки: Авиа доставка'
                                  '\n'
@@ -721,9 +721,9 @@ def calculator_goods_auto_avia(bot):
                 markup = types.InlineKeyboardMarkup()
                 markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
                 markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
-                price = float(variable) * 16.3
+                price = float(variable) * 16.3 + float(variable) * 1.63
                 bot.send_message(message.chat.id,
-                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России и страхованием товара\n'
                                  '\n'
                                  'Тип доставки: Авто доставка'
                                  '\n'
@@ -804,9 +804,9 @@ def calculator_goods_auto_avia(bot):
                 markup = types.InlineKeyboardMarkup()
                 markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
                 markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
-                price = float(variable) * 18.3
+                price = float(variable) * 18.3 + float(variable) * 1.83
                 bot.send_message(message.chat.id,
-                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России и страхованием товара\n'
                                  '\n'
                                  'Тип доставки: Авиа доставка'
                                  '\n'
@@ -887,9 +887,9 @@ def calculator_goods_auto_avia(bot):
                 markup = types.InlineKeyboardMarkup()
                 markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
                 markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
-                price = float(variable) * 16.1
+                price = float(variable) * 16.1 + float(variable) * 1.61
                 bot.send_message(message.chat.id,
-                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России и страхованием товара\n'
                                  '\n'
                                  'Тип доставки: Авто доставка'
                                  '\n'
@@ -970,9 +970,9 @@ def calculator_goods_auto_avia(bot):
                 markup = types.InlineKeyboardMarkup()
                 markup.add(types.InlineKeyboardButton('💰Вернуться в калькулятор', callback_data='calcul'))
                 markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
-                price = float(variable) * 18
+                price = float(variable) * 18 + float(variable) * 1.8
                 bot.send_message(message.chat.id,
-                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России\n'
+                                 f'💰Итоговая стоимость: {int(price)} руб с учетом доставки до России и страхованием товара\n'
                                  '\n'
                                  'Тип доставки: Авиа доставка'
                                  '\n'
@@ -998,3 +998,33 @@ def calculator_goods_auto_avia(bot):
                                   '⚠⚠ Если зачеркнутой цены нет, то напишите обычную.'
                                   )
             bot.register_next_step_handler(mesg, calculator_parph_avia)
+
+
+def order_goods(bot):
+
+    @bot.callback_query_handler(func=lambda callback: callback == 'order')
+
+    def order(call):
+
+        bot.answer_callback_query(callback_query_id=call.id)
+        markup = types.InlineKeyboardMarkup()
+        markup.add(types.InlineKeyboardButton('👟Летняя обувь', callback_data='summer_order'))
+        markup.add(types.InlineKeyboardButton('🥾Зимняя обувь', callback_data='winter_order'))
+        markup.add(types.InlineKeyboardButton('👕Майки/рубашки/толстовки', callback_data='short_order'))
+        markup.add(types.InlineKeyboardButton('🛍️Парфюм/акс...ры/сумки', callback_data='parph_order'))
+        markup.add(types.InlineKeyboardButton('❤️Меню', callback_data='menu'))
+        photo = open('Снимок экрана 2024-03-25 в 15.48.00.png', 'rb')
+        bot.edit_message_reply_markup(call.message.chat.id, message_id=call.message.message_id, reply_markup='')
+        bot.send_photo(call.message.chat.id, photo, caption=
+        '\n'
+        'В нашем калькуляторе Вы можете сделать рассчет стоимости товара с доставкой до России\n'
+        '\n'
+        'В калькуляторе указывайте цены в юанях <b><u>Только</u></b> по <s>зачернутому</s> ценнику. Если его нет, то укажите обычную цену.\n'
+        '\n'
+        'Товары с ≈ <b>НЕ ВЫКУПАЕМ</b>\n'
+        '\n'
+        '⛔ Если Ваш товар стоит больше 1500 юаней, то к стоимости товара следует прибавлять 10% в юанях. 10% взымается за страхование товара, в случае утери или кражи возврат 100% стоимости товара. ⛔\n'
+        '    ', parse_mode='html', reply_markup=markup
+                       )
+
+
