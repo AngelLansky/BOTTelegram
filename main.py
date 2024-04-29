@@ -121,10 +121,15 @@ utils.question_kom(bot)
 utils.question_to_operator(bot)
 
 
-#Калькулятор
-utils.delivery_calc(bot)
+#Калькулятор стоимости доставки
+utils.calculator_goods_auto(bot)
 
-utils.calculator_all_goods(bot)
+
+#Калькулятор
+utils.delivery_calc_summer(bot)
+
+
+
 
 
 bot.infinity_polling()
